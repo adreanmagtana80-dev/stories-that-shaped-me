@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Three stories that shaped how I think, learn, and see the world.">
+  <title>Stories That Shaped Me | A Personal Movie Journal</title>
+  <style>
+    :root{
+      --bg:#080c17;--surface:#121a2b;--surface2:#18243a;--text:#f7f8ff;
+      --muted:#b9c2d5;--red:#ff3d67;--blue:#42c5ff;--gold:#ffd166;
+      --line:rgba(255,255,255,.13);--shadow:0 22px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:radial-gradient(circle at 80% 0%,#182748 0,transparent 30%),var(--bg);color:var(--text);font:16px/1.7 Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1120px,91%);margin:auto}
+    .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:12px;top:12px;background:#fff;color:#000;padding:10px;z-index:99}
+    header{position:sticky;top:0;z-index:20;background:rgba(8,12,23,.91);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:900;letter-spacing:1.5px}.brand span{color:var(--red)}
+    nav ul{display:flex;gap:23px;list-style:none;padding:0;margin:0;color:var(--muted);font-size:.92rem}
+    nav a:hover,nav a:focus{color:var(--blue)}
+    .menu-btn{display:none;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 11px}
+    .hero{min-height:620px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:45px;padding:78px 0 65px}
+    .eyebrow{color:var(--gold);font-size:.76rem;font-weight:800;letter-spacing:2.4px;text-transform:uppercase}
+    h1{font-size:clamp(2.8rem,6.5vw,5.6rem);line-height:.98;letter-spacing:-3px;margin:18px 0}
+    h1 span{color:var(--red);text-shadow:3px 3px 0 var(--blue)}
+    .hero-copy{font-size:1.08rem;color:var(--muted);max-width:610px}
+    .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:27px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border-radius:8px;font-weight:800;border:1px solid transparent;transition:.2s}
+    .btn-primary{background:var(--red);box-shadow:4px 4px 0 var(--blue)}
+    .btn-secondary{border-color:var(--line);background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-3px)}
+    .hero-art{height:440px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at 50% 35%,#f64c78 0,#8d2d59 25%,#263c70 57%,#0c1427 100%);box-shadow:var(--shadow)}
+    .hero-art:before{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(125deg,transparent 0 32px,rgba(255,255,255,.09) 33px 35px);transform:rotate(-10deg)}
+    .web-lines{position:absolute;width:310px;height:310px;left:50%;top:42%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid #ffffff90;background:repeating-conic-gradient(#ffffff30 0 1deg,transparent 1deg 20deg);mask:radial-gradient(circle,transparent 0 8%,#000 8.5% 100%)}
+    .hero-symbol{position:absolute;z-index:2;left:50%;top:39%;transform:translate(-50%,-50%);font-size:8rem;filter:drop-shadow(8px 10px 0 #111827)}
+    .skyline{position:absolute;bottom:0;left:0;right:0;height:43%;background:linear-gradient(0deg,#080d19,#101a31);clip-path:polygon(0 30%,8% 30%,8% 5%,17% 5%,17% 45%,26% 45%,26% 15%,35% 15%,35% 55%,44% 55%,44% 0,55% 0,55% 35%,65% 35%,65% 12%,75% 12%,75% 50%,84% 50%,84% 20%,93% 20%,93% 42%,100% 42%,100% 100%,0 100%)}
+    .art-caption{position:absolute;bottom:22px;left:24px;z-index:3;font-size:.72rem;letter-spacing:2px;font-weight:800}
+    section{padding:76px 0}
+    .section-head{margin-bottom:30px}
+    .section-head small{color:var(--blue);font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    .section-head h2{font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.1;margin:7px 0}
+    .section-head p{max-width:720px;color:var(--muted);margin:0}
+    .intro-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}
+    .feature-panel,.story-panel,.movie-card,.lesson,.timeline-card,.quiz-panel,.credits-panel{background:var(--surface);border:1px solid var(--line);border-radius:18px}
+    .feature-panel{padding:28px;background:linear-gradient(145deg,#9c2349,#1d315d)}
+    .feature-panel .big{font-size:2.5rem}
+    .feature-panel h3{font-size:1.6rem;line-height:1.2;margin:8px 0}
+    .feature-panel p,.story-panel p{color:#e1e7f3}
+    .story-panel{padding:29px}
+    .story-panel p{color:var(--muted);margin-top:0}
+    .movie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .movie-card{overflow:hidden;transition:transform .2s,border-color .2s}
+    .movie-card:hover{transform:translateY(-5px);border-color:#ffffff50}
+    .poster{height:180px;display:grid;place-items:center;font-size:4.2rem;background:radial-gradient(circle at 50% 30%,#e94772,#243e70 65%,#10182b)}
+    .poster.two{background:radial-gradient(circle at 50% 30%,#f2a65a,#71435f 55%,#17243b)}
+    .poster.three{background:radial-gradient(circle at 50% 30%,#62b9b1,#315071 55%,#111a2b)}
+    .movie-content{padding:22px}
+    .tag{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:800}
+    .movie-content h3{margin:7px 0 8px;font-size:1.25rem}
+    .movie-content p{color:var(--muted);margin:0}
+    .edit-note{display:inline-block;margin-top:14px;padding:5px 9px;border:1px dashed var(--gold);border-radius:6px;color:var(--gold);font-size:.75rem}
+    .lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+    .lesson{display:flex;gap:16px;padding:21px}
+    .lesson-num{color:var(--gold);font-size:1.3rem;font-weight:900}
+    .lesson h3{margin:0 0 5px}.lesson p{margin:0;color:var(--muted)}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .timeline-card{padding:22px;position:relative}
+    .timeline-card .year{font-size:.75rem;color:var(--blue);font-weight:900;letter-spacing:1.5px}
+    .timeline-card h3{margin:7px 0}.timeline-card p{color:var(--muted);margin:0}
+    .reflection{padding:clamp(25px,5vw,55px);border:1px solid var(--line);border-radius:23px;background:linear-gradient(120deg,#14233d,#32182b)}
+    .reflection h2{font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:9px 0 18px}
+    .reflection p{max-width:880px;color:#e1e5f0}
+    .quiz-panel{padding:28px}
+    .quiz-panel h3{margin-top:0}
+    .quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+    .quiz-options button{padding:12px;border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--text);cursor:pointer;text-align:left}
+    .quiz-options button:hover,.quiz-options button:focus{border-color:var(--blue);outline:none}
+    #quiz-result{min-height:30px;color:var(--gold);font-weight:700}
+    .credits-panel{padding:25px}
+    .credits-panel ul{padding-left:20px;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.9rem}
+    .top-link{color:var(--blue)}
+    @media(max-width:800px){
+      .hero,.intro-grid{grid-template-columns:1fr}.hero{padding-top:55px;min-height:auto}.hero-art{height:340px}
+      .movie-grid{grid-template-columns:1fr}.movie-card{display:grid;grid-template-columns:125px 1fr}.poster{height:100%;min-height:180px;font-size:3rem}
+      .timeline{grid-template-columns:1fr}.lessons{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      nav{padding:12px 0;flex-wrap:wrap}.menu-btn{display:block}nav ul{display:none;width:100%;flex-direction:column;gap:8px;padding:8px 0 12px}nav ul.open{display:flex}
+      h1{letter-spacing:-1.8px}.hero-art{height:290px}.hero-symbol{font-size:6rem}.web-lines{width:240px;height:240px}
+      section{padding:58px 0}.movie-card{grid-template-columns:1fr}.poster{height:150px;min-height:0}.quiz-options{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="container">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">STORIES <span>THAT SHAPED ME</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <ul id="navLinks">
+        <li><a href="#about">About</a></li><li><a href="#stories">My Stories</a></li>
+        <li><a href="#lessons">Lessons</a></li><li><a href="#reflection">Reflection</a></li><li><a href="#credits">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="container">
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">A personal movie journal · identity · courage · growth</div>
+        <h1>Anyone can wear the <span>mask.</span></h1>
+        <p class="hero-copy"><strong>Spider-Man: Into the Spider-Verse</strong> is the starting point of this collection. It reminds me that being a hero is not about being perfect. It is about having courage, accepting responsibility, and learning to believe in yourself.</p>
+        <div class="actions"><a class="btn btn-primary" href="#stories">Explore the stories ↓</a><a class="btn btn-secondary" href="#reflection">Read my reflection</a></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Original comic-inspired illustration with a web pattern and city skyline">
+        <div class="web-lines"></div><div class="hero-symbol" aria-hidden="true">🕷️</div><div class="skyline"></div>
+        <div class="art-caption">COURAGE · IDENTITY · GROWTH</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head"><small>01 / The person behind the screen</small><h2>Why stories matter to me</h2><p>Stories can entertain us, but the ones we remember can also challenge our thinking and help us understand ourselves.</p></div>
+      <div class="intro-grid">
+        <div class="feature-panel"><div class="big">🎬</div><h3>Spider-Man: Into the Spider-Verse</h3><p>2018 · Animated superhero film</p><p>The story follows Miles Morales, a teenager who becomes Spider-Man and meets other Spider-people from different dimensions.</p></div>
+        <div class="story-panel"><h3>Why I chose this movie</h3><p>I like this movie because Miles is not someone who knows everything from the beginning. He feels uncertain, makes mistakes, and struggles to understand his new responsibilities. As the story continues, he learns to trust himself and discovers what kind of hero he wants to be.</p><p>The animation, music, action, and humor make the movie exciting, but its message about believing in yourself is what makes it memorable to me.</p></div>
+      </div>
+    </section>
+
+    <section id="stories">
+      <div class="section-head"><small>02 / Three stories, three perspectives</small><h2>The stories I carry with me</h2><p>These three stories stay with me for different reasons. Each one explores identity, courage, difficult choices, and the importance of holding on to what matters.</p></div>
+      <div class="movie-grid">
+        <article class="movie-card">
+          <div class="poster" aria-label="Spider web symbol">🕸️</div>
+          <div class="movie-content"><span class="tag">Story 01 · Completed</span><h3>Spider-Man: Into the Spider-Verse</h3><p>Miles' journey shows me that I do not need to be perfect before I begin. Confidence can grow as I take chances, learn, and keep going.</p></div>
+        </article>
+        <article class="movie-card">
+          <div class="poster two" aria-label="Mockingjay-inspired symbol">🔥</div>
+          <div class="movie-content"><span class="tag">Story 02 · Courage &amp; standing up</span><h3>The Hunger Games</h3><p>Katniss Everdeen's courage reminds me that standing up for what is right can matter, even when the situation feels unfair or intimidating. Her willingness to protect the people she cares about shows me that bravery is not only about being strong; it is also about compassion and making difficult choices.</p></div>
+        </article>
+        <article class="movie-card">
+          <div class="poster three" aria-label="Survivor group symbol">🧟</div>
+          <div class="movie-content"><span class="tag">Story 03 · Trust &amp; humanity</span><h3>The Walking Dead</h3><p>Even in a world filled with uncertainty, the story shows how much people depend on trust, cooperation, and community. It reminds me that difficult circumstances can test people's values, and that protecting others and making thoughtful decisions are important.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="lessons">
+      <div class="section-head"><small>03 / What stays with me</small><h2>Lessons beyond the screen</h2><p>These are the ideas I take from all three stories and want to remember in everyday life.</p></div>
+      <div class="lessons">
+        <article class="lesson"><div class="lesson-num">01</div><div><h3>Believe in myself</h3><p>I may feel unprepared sometimes. The movie reminds me that confidence can grow when I take the first step and keep learning.</p></div></article>
+        <article class="lesson"><div class="lesson-num">02</div><div><h3>Learn from mistakes</h3><p>Mistakes do not mean I have failed forever. They can help me understand what to improve and make better choices next time.</p></div></article>
+        <article class="lesson"><div class="lesson-num">03</div><div><h3>Accept responsibility</h3><p>My choices affect other people. I should be responsible for my actions and try to do what is right, even when it is difficult.</p></div></article>
+        <article class="lesson"><div class="lesson-num">04</div><div><h3>Be myself</h3><p>I do not have to copy someone else to succeed. I can learn from others while developing my own strengths and identity.</p></div></article>
+        <article class="lesson"><div class="lesson-num">05</div><div><h3>Stand up for what is right — The Hunger Games</h3><p>Katniss volunteering to take her sister's place shows me that courage can come from love and concern for others. It makes me think about speaking up when something is unfair.</p></div></article>
+        <article class="lesson"><div class="lesson-num">06</div><div><h3>Value trust and teamwork — The Walking Dead</h3><p>The group's changing relationships remind me that people need one another. Trust, cooperation, and empathy can help a community face difficult situations.</p></div></article>
+      </div>
+    </section>
+
+    <section id="moments">
+      <div class="section-head"><small>04 / A moment I remember</small><h2>The leap of faith</h2><p>A simple timeline of the idea at the heart of Miles' character development.</p></div>
+      <div class="timeline">
+        <article class="timeline-card"><div class="year">AT THE BEGINNING</div><h3>Uncertainty</h3><p>Miles is still learning who he is and what being Spider-Man asks of him.</p></article>
+        <article class="timeline-card"><div class="year">THE TURNING POINT</div><h3>Choosing to trust</h3><p>He realizes that he cannot wait until he feels completely ready to take responsibility.</p></article>
+        <article class="timeline-card"><div class="year">THE TAKEAWAY</div><h3>Taking the leap</h3><p>For me, this represents having courage to try, even when the outcome is not guaranteed.</p></article>
+      </div>
+    </section>
+
+    <section id="reflection">
+      <div class="reflection">
+        <div class="eyebrow">05 / Personal reflection</div>
+        <h2>How this movie affects my thinking and life</h2>
+        <p><strong>Spider-Man: Into the Spider-Verse</strong> affects the way I think because it reminds me that everyone has their own journey. Sometimes I compare myself to other people and feel that I am not good enough or that I am moving too slowly. Miles' journey teaches me that I do not need to be perfect or have everything figured out before I begin.</p>
+        <p>It also encourages me to face challenges instead of avoiding them. In school and in everyday life, I can make mistakes, learn from them, and continue improving. The movie reminds me to take responsibility, believe in my abilities, and stay true to who I am.</p>
+        <p><strong>My biggest takeaway:</strong> I do not have to be someone else to make a difference. I just have to believe in myself and keep trying.</p>
+        <p><strong>What I take from The Hunger Games:</strong> Katniss reminds me that one person's decision to protect someone or challenge unfairness can have a wider meaning. I want to remember that doing the right thing can require courage, especially when it is not the easiest choice.</p>
+        <p><strong>What I take from The Walking Dead:</strong> The series makes me think about how important trust and community are. People may have different opinions, but listening, helping one another, and thinking carefully about our choices can make a difference.</p>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="section-head"><small>06 / Interactive feature</small><h2>Quick reflection quiz</h2><p>Choose the idea that best matches the lesson you take from Miles' journey.</p></div>
+      <div class="quiz-panel">
+        <h3>What does “taking the leap” mean in this story?</h3>
+        <div class="quiz-options">
+          <button type="button" data-answer="wrong">A. Waiting until everything is easy</button>
+          <button type="button" data-answer="right">B. Finding courage to try, even when unsure</button>
+          <button type="button" data-answer="wrong">C. Trying to become exactly like someone else</button>
+          <button type="button" data-answer="wrong">D. Avoiding responsibility</button>
+        </div>
+        <div id="quiz-result" role="status" aria-live="polite">Choose an answer to see your result.</div>
+      </div>
+    </section>
+
+    <section id="credits">
+      <div class="section-head"><small>07 / Credits and tools</small><h2>Credits & resources</h2><p>Transparency about the tools and materials used to create this website.</p></div>
+      <div class="credits-panel">
+        <ul>
+          <li><strong>Website tools:</strong> HTML, CSS, and JavaScript; edited in a code editor.</li>
+          <li><strong>Original visual design:</strong> The hero illustration and decorative artwork are made with CSS and emoji; no external image files are embedded.</li>
+          <li><strong>Story references:</strong> <em>Spider-Man: Into the Spider-Verse</em> (2018), <em>The Hunger Games</em> (film/book franchise), and <em>The Walking Dead</em> (television series). Titles and character references are included for educational discussion.</li>
+          <li><strong>AI assistance:</strong> AI helped organize the page, draft starter wording for the story descriptions and reflections, create the layout, and add responsive styling and the quiz. The student should revise the personal reflections so they accurately express their own experiences and opinions.</li>
+          <li><strong>External audio/images:</strong> None used in this version.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+<footer><div class="container">Stories That Shaped Me · A personal movie journal · <a class="top-link" href="#home">Back to top ↑</a></div></footer>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+  const result = document.getElementById('quiz-result');
+  document.querySelectorAll('.quiz-options button').forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.dataset.answer === 'right') {
+        result.textContent = 'Correct! The story reminds us that courage can mean taking a meaningful step even when we feel uncertain.';
+      } else {
+        result.textContent = 'Not quite. Think about Miles choosing to trust himself and move forward even though he is still learning.';
+      }
+    });
+  });
+</script>
+</body>
+</html>
